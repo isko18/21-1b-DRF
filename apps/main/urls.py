@@ -1,7 +1,9 @@
-from django.urls import path
-from apps.main.views import CreateSettingsView, ProductCreateView
+from rest_framework.routers import DefaultRouter
+from apps.main.views import ProductMixins
 
-urlpatterns = [
-    path("settings/create/", CreateSettingsView.as_view(), name="settings_create"),
-    path('product/create', ProductCreateView.as_view(), name="product_create")
-]
+router = DefaultRouter()
+
+router.register(r'products', ProductMixins, basename='product')
+
+urlpatterns = router.urls
+

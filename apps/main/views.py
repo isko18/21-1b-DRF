@@ -1,12 +1,13 @@
-from rest_framework.generics import CreateAPIView
+from rest_framework import mixins
+from rest_framework.viewsets import GenericViewSet
 from apps.main.models import Settings, Products
-from apps.main.serializer import SettingsSerializer, ProductSerializer
+from apps.main.serializer import  ProductSerializer
 
-class CreateSettingsView(CreateAPIView):
-    queryset = Settings.objects.all()
-    serializer_class = SettingsSerializer
-    
-    
-class ProductCreateView(CreateAPIView):
-    queryset = Products
+class ProductMixins(GenericViewSet,
+                    mixins.CreateModelMixin,
+                    mixins.ListModelMixin,
+                    mixins.UpdateModelMixin,
+                    mixins.DestroyModelMixin):
+   
+    queryset = Products.objects.all()
     serializer_class = ProductSerializer

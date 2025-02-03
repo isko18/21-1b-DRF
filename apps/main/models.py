@@ -35,7 +35,7 @@ class Products(models.Model):
     )
     slug = models.TextField(
         verbose_name="SLUG",
-        unique=True
+        unique=True, null=True
     )
     description = models.TextField(
         verbose_name="Описание",
