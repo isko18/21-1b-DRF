@@ -62,6 +62,7 @@ class Products(models.Model):
     def get_first_image(self) -> 'ProductImage':
         product_image = ProductImage.objects.filter(product=self).first()
         return product_image.image.url if product_image else None
+    
     def save(self, *args, **kwargs):
         # Генерация slug, если он отсутствует
         if not self.slug:
